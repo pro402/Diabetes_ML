@@ -4,20 +4,21 @@ import pickle
 
 # Set the title of the app
 st.title("Diabetes Prediction App")
-
+st.write("This works on the Logistic Regression model for classifing")
+st.write("The output may not be 100% accurate as the accuracy is only 0.8397435897435898")
 # Load the model from disk
 with open('Diabetes_lr.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
 
 # Create input fields for each feature
-pregnancies = st.number_input('Enter number of Pregnancies', min_value=0, max_value=20, step=1)
-glucose = st.number_input('Enter GLUCOSE', min_value=0, max_value=200, step=1)
-blood_pressure = st.number_input('Enter BloodPressure', min_value=0, max_value=200, step=1)
-skin_thickness = st.number_input('Enter SkinThickness', min_value=0, max_value=100, step=1)
-insulin = st.number_input('Enter Insulin', min_value=0, max_value=800, step=1)
-bmi = st.number_input('Enter BMI', min_value=0.0, max_value=70.0, step=0.1)
-diabetes_pedigree_function = st.number_input('Enter DiabetesPedigreeFunction', min_value=0.0, max_value=2.5, step=0.01)
-age = st.number_input('Enter Age', min_value=0, max_value=120, step=1)
+pregnancies = st.slider('Enter number of Pregnancies',0,20,0)
+glucose = st.slider('Enter GLUCOSE',0,200,)
+blood_pressure = st.slider('Enter BloodPressure',0,400,70)
+skin_thickness = st.slider('Enter SkinThickness',0,30,10)
+insulin = st.slider('Enter Insulin',0,800,20)
+bmi = st.slider('Enter BMI',0.0,60.0,20.0)
+diabetes_pedigree_function = st.slider('Enter DiabetesPedigreeFunction', 0.00, 2.50, 0.0)
+age = st.slider('How old are you?', 0, 130, 25)
 
 # Create a button to trigger prediction
 if st.button('Predict'):
@@ -28,4 +29,9 @@ if st.button('Predict'):
     # Make a prediction
     new_prediction = loaded_model.predict(new_row)
     # Print the prediction
-    st.write(f'Prediction for new row using loaded model: {new_prediction}')
+  
+    st.write(f'Prediction for the data inserted : {new_prediction}')
+    if new_prediction == 0:
+      st.write("It seems like you are out of danger for now ...")
+    else:
+      st.write("You might have Diabetes do go for proper health checkup ...")
