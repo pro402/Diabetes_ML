@@ -7,7 +7,7 @@ st.title("Diabetes Prediction App")
 st.write("This works on the Logistic Regression model for classifing")
 st.write("The output may not be 100% accurate as the accuracy is only 0.8397435897435898")
 # Load the model from disk
-with open('Diabetes_lr.pkl', 'rb') as file:
+with open('./Diabetes_lr.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
 
 # Create input fields for each feature
