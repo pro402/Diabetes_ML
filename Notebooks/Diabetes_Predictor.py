@@ -31,7 +31,7 @@ if st.button('Predict'):
     new_prediction = loaded_model.predict(new_row)
     # Print the prediction
     with st.spinner('Wait for it...'):
-    time.sleep(5)
+        time.sleep(5)
     st.success('Done!')
     st.balloons()
     st.write(f'Prediction for the data inserted : {new_prediction}')
