@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pickle
+import time
 
 # Set the title of the app
 st.title("Diabetes Prediction App")
@@ -29,7 +30,10 @@ if st.button('Predict'):
     # Make a prediction
     new_prediction = loaded_model.predict(new_row)
     # Print the prediction
-  
+    with st.spinner('Wait for it...'):
+    time.sleep(5)
+    st.success('Done!')
+    st.balloons()
     st.write(f'Prediction for the data inserted : {new_prediction}')
     if new_prediction == 0:
       st.write("It seems like you are out of danger for now ...")
